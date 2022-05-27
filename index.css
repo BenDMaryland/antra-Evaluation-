@@ -1,0 +1,88 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+#main__album-container {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+}
+
+
+
+header {
+    margin-top: 1rem;
+    text-align: center;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, 0);
+    border: solid 1px #00b4cc;
+}
+
+.search {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+#header___search-bar {
+
+    height: 4rem;
+    border: 3px solid #00B4CC;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 22rem;
+}
+
+#header___search-btn {
+
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+
+
+}
+
+
+img {
+    max-width: 150px;
+    max-height: 150px;
+
+}
+
+.card {
+    border: solid 1px #00b4cc;
+    padding: .1rem;
+    margin: .3rem;
+    background-color: #ffffff00;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 180px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.card h3 {
+    word-wrap: break-word;
+    max-width: 180px;
+}
+
+main {
+    position: relative;
+    top: 10vh;
+    height: 90vh;
+    overflow: scroll;
+
+}
