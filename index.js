@@ -2,12 +2,13 @@ let allAlbums
 let searchBar = document.querySelector("#header___search-bar")
 let AllAlbumsContainer = document.querySelector("#main__album-container")
 let resultsHeader = document.getElementById("header__results")
+let filterResults = document.querySelector("#header___filter-bar")
 let searchResults
 
 document.querySelector("#header___search-btn").addEventListener("click", searchHandler)
 document.querySelector("#header___search-bar").addEventListener("keyup", (e) => { e.key === "Enter" && searchHandler() })
 document.querySelector("#header___sort-btn").addEventListener("click", sortHandler)
-
+document.querySelector("#header___filter-btn").addEventListener("click", filterHandler)
 
 
 function searchHandler() {
@@ -18,7 +19,7 @@ function searchHandler() {
         resultsHeader.innerText = "◴"
         fetch(`https://itunes.apple.com/search?term=${searchBar.value}&media=music&entity=album&attribute=artistTerm&limit=200`)
             .then(r => r.json())
-            .then(data => allAlbums = data)
+            .then(data => allAlbums = data.results)
             .then(allAlbums => displayAlbums())
     }
 }
@@ -26,22 +27,28 @@ function searchHandler() {
 function displayAlbums() {
     console.log(allAlbums, searchResults)
     AllAlbumsContainer.textContent = ""
-    allAlbums.resultCount == 0 ?
+    allAlbums.length == 0 ?
         resultsHeader.innerText = `No results results for ${searchBar.value}, please try again` :
-        resultsHeader.innerText = `${allAlbums.resultCount} results for ${searchBar.value}`
-    allAlbums.results.forEach(album => {
+        resultsHeader.innerText = `${allAlbums.length} results for ${searchBar.value}`
+    allAlbums.forEach(album => {
 
         // create html items 
         let albumImg = document.createElement("img") //artworkUrl100
         let albumSection = document.createElement("section")
         let artistName = document.createElement("h1") //artistName
         let albumName = document.createElement("h3") //collectionName
+        let albumPrice = document.createElement("p") //collectionPrice
+
 
         // appending them 
         let albumCard = AllAlbumsContainer.appendChild(albumSection)
         albumCard.appendChild(albumName).innerText = album.collectionName
         albumCard.appendChild(albumImg).src = album.artworkUrl60
+        albumCard.appendChild(albumPrice).innerText = `$${album.collectionPrice}`
         albumCard.className = "card"
+
+
+
 
         // Deleting
         let deleteBtn = albumCard.appendChild(document.createElement("button"))
@@ -62,12 +69,13 @@ function displayAlbums() {
 function sortHandler(e) {
     console.log(allAlbums)
     AllAlbumsContainer.innerHTML = ""
-    allAlbums.results.sort((a, b) => (parseInt(a.releaseDate) - parseInt(b.releaseDate)))
+    allAlbums.sort((a, b) => (parseInt(a.collectionPrice) - parseInt(b.collectionPrice)))
     displayAlbums()
 }
 
 function deleteHandler(e) {
     e.target.parentNode.remove()
+    console.log(allAlbums)
 
     // Below is an example of what I'd do to actually delete the item 
 
@@ -113,6 +121,15 @@ function EditHandler(e) {
             //     .then((json) => console.log(json));
         }
     })
+}
+
+function filterHandler(e) {
+    console.log(filterResults.value)
+    AllAlbumsContainer.innerHTML = ""
+    allAlbums = allAlbums.filter(album => album.collectionPrice < filterResults.value && album)
+
+    displayAlbums()
+
 }
 
 
