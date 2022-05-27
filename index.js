@@ -116,3 +116,26 @@ function EditHandler(e) {
 }
 
 
+let exam = {
+    "wrapperType": "collection",
+    "collectionType": "Album",
+    "artistId": 2715720,
+    "collectionId": 1451901307,
+    "amgArtistId": 353484,
+    "artistName": "Kanye West",
+    "collectionName": "Graduation",
+    "collectionCensoredName": "Graduation",
+    "artistViewUrl": "https://music.apple.com/us/artist/kanye-west/2715720?uo=4",
+    "collectionViewUrl": "https://music.apple.com/us/album/graduation/1451901307?uo=4",
+    "artworkUrl60": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/db/ce/e7/dbcee73f-015e-d994-abe4-58fbdfd0569c/00602577027864.rgb.jpg/60x60bb.jpg",
+    "artworkUrl100": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/db/ce/e7/dbcee73f-015e-d994-abe4-58fbdfd0569c/00602577027864.rgb.jpg/100x100bb.jpg",
+    "collectionPrice": 6.99,
+    "collectionExplicitness": "explicit",
+    "contentAdvisoryRating": "Explicit",
+    "trackCount": 14,
+    "copyright": "A Roc-A-Fella Records release; ℗ 2007 UMG Recordings, Inc.",
+    "country": "USA",
+    "currency": "USD",
+    "releaseDate": "2007-09-11T07:00:00Z",
+    "primaryGenreName": "Hip-Hop/Rap"
+}
