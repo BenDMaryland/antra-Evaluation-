@@ -1,3 +1,7 @@
+/// Next steps --- try to remove some of these variables from the global scope if possible 
+//  make it so delete/ edit change the array so that it isnt reset when sorting 
+
+
 let allAlbums
 let searchBar = document.querySelector("#header___search-bar")
 let AllAlbumsContainer = document.querySelector("#main__album-container")
@@ -10,20 +14,24 @@ document.querySelector("#header___search-bar").addEventListener("keyup", (e) => 
 document.querySelector("#header___sort-btn").addEventListener("click", sortHandler)
 document.querySelector("#header___filter-btn").addEventListener("click", filterHandler)
 
+
+/// Handles search Ensure that users search is valid
 function searchHandler() {
     if (searchBar.value === "") {
         alert("Please enter a valid search")
     }
     else {
-        // resultsHeader.innerText = "◴"
+        //  this shows a loading bar until userss results are found 
         resultsHeader.innerHTML = `<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="laoding" >`
         fetch(`https://itunes.apple.com/search?term=${searchBar.value}&media=music&entity=album&attribute=artistTerm&limit=200`)
             .then(r => r.json())
-            .then(data => allAlbums = data.results)
-            .then(allAlbums => displayAlbums())
+            .then(data => allAlbums = data.results) // sending only yhr results array helps make the code a bit dryer
+            .then(allAlbums => displayAlbums()) 
     }
 }
 
+
+/// Displays albums --- is used by all other functions 
 function displayAlbums() {
 
     // this shows the tools menu for filtering and sorting 
@@ -68,6 +76,7 @@ function displayAlbums() {
     });
 }
 
+/// Below are some extras I added, they all work about the same way. - Rework the allAlbums array then call the displayAlbums  function to rerender
 function sortHandler(e) {
     console.log(allAlbums)
     AllAlbumsContainer.innerHTML = ""
