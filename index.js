@@ -10,7 +10,6 @@ document.querySelector("#header___search-bar").addEventListener("keyup", (e) => 
 document.querySelector("#header___sort-btn").addEventListener("click", sortHandler)
 document.querySelector("#header___filter-btn").addEventListener("click", filterHandler)
 
-
 function searchHandler() {
     if (searchBar.value === "") {
         alert("Please enter a valid search")
@@ -25,8 +24,14 @@ function searchHandler() {
 }
 
 function displayAlbums() {
-    console.log(allAlbums, searchResults)
+
+    // this shows the tools menu for filtering and sorting 
+    document.getElementById("tools").hidden = false;
+    document.getElementById("tools").style.display = "flex"
+
+    // this clears the container incase there is anything already in here 
     AllAlbumsContainer.textContent = ""
+    // error handling
     allAlbums.length == 0 ?
         resultsHeader.innerText = `No results results for ${searchBar.value}, please try again` :
         resultsHeader.innerText = `${allAlbums.length} results for ${searchBar.value}`
@@ -48,23 +53,19 @@ function displayAlbums() {
         albumCard.className = "card"
 
 
-
-
         // Deleting
         let deleteBtn = albumCard.appendChild(document.createElement("button"))
         deleteBtn.addEventListener("click", deleteHandler)
         deleteBtn.innerText = "delete"
         deleteBtn.id = album.collectionId
 
+        //editing
         let editBtn = albumCard.appendChild(document.createElement("button"))
         editBtn.addEventListener("click", EditHandler)
         editBtn.innerText = "edit"
         editBtn.id = album.collectionId
     });
-
-
 }
-
 
 function sortHandler(e) {
     console.log(allAlbums)
@@ -86,7 +87,6 @@ function deleteHandler(e) {
     // ).then(data => console.log(data))
     //     .then(allTodos = allTodos.filter(todo => todo.id != this.id))
 }
-
 
 function EditHandler(e) {
     // here we replace the H3 title with an input box 
@@ -132,27 +132,3 @@ function filterHandler(e) {
 
 }
 
-
-let exam = {
-    "wrapperType": "collection",
-    "collectionType": "Album",
-    "artistId": 2715720,
-    "collectionId": 1451901307,
-    "amgArtistId": 353484,
-    "artistName": "Kanye West",
-    "collectionName": "Graduation",
-    "collectionCensoredName": "Graduation",
-    "artistViewUrl": "https://music.apple.com/us/artist/kanye-west/2715720?uo=4",
-    "collectionViewUrl": "https://music.apple.com/us/album/graduation/1451901307?uo=4",
-    "artworkUrl60": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/db/ce/e7/dbcee73f-015e-d994-abe4-58fbdfd0569c/00602577027864.rgb.jpg/60x60bb.jpg",
-    "artworkUrl100": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/db/ce/e7/dbcee73f-015e-d994-abe4-58fbdfd0569c/00602577027864.rgb.jpg/100x100bb.jpg",
-    "collectionPrice": 6.99,
-    "collectionExplicitness": "explicit",
-    "contentAdvisoryRating": "Explicit",
-    "trackCount": 14,
-    "copyright": "A Roc-A-Fella Records release; ℗ 2007 UMG Recordings, Inc.",
-    "country": "USA",
-    "currency": "USD",
-    "releaseDate": "2007-09-11T07:00:00Z",
-    "primaryGenreName": "Hip-Hop/Rap"
-}

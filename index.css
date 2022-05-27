@@ -17,9 +17,9 @@ header {
     left: 50%;
     position: fixed;
     transform: translate(-50%, 0);
-   min-height: 6rem;
-background: white;
-z-index: 99;
+    min-height: 6rem;
+    background: white;
+    z-index: 99;
 }
 
 .search {
@@ -59,6 +59,7 @@ z-index: 99;
     font-size: 20px;
     width: 3rem;
     margin-right: .3rem;
+    max-height: 4rem;
 }
 
 
@@ -104,4 +105,31 @@ section button {
     cursor: pointer;
     margin-top: .3rem;
 
+}
+
+header input {
+    max-height: 4rem;
+    border: 3px solid #00B4CC;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 22rem;
+}
+
+#tools {
+    flex-direction: row;
+}
+
+#tools button {
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+    width: 3rem;
+    margin-right: .3rem;
+    max-height: 4rem
 }
