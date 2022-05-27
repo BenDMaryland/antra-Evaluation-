@@ -128,8 +128,9 @@ header input {
     color: #fff;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
-    font-size: 20px;
+
     width: 3rem;
     margin-right: .3rem;
-    max-height: 4rem
+    max-height: 4rem;
+    padding: .2rem;
 }
