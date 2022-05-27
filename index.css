@@ -4,15 +4,11 @@
     box-sizing: border-box;
 }
 
-
-
 #main__album-container {
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-
 }
-
 
 
 header {
@@ -21,14 +17,22 @@ header {
     left: 50%;
     position: fixed;
     transform: translate(-50%, 0);
-    border: solid 1px #00b4cc;
+   
 }
 
 .search {
-
     display: flex;
     justify-content: center;
+}
 
+#header___sort-btn {
+    width: 2rem;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
 }
 
 #header___search-bar {
@@ -51,8 +55,8 @@ header {
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
-
-
+    width: 3rem;
+    margin-right: .3rem;
 }
 
 
@@ -84,5 +88,16 @@ main {
     top: 10vh;
     height: 90vh;
     overflow: scroll;
+
+}
+
+section button {
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    margin-top: .3rem;
 
 }
