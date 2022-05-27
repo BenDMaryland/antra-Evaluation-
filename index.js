@@ -1,6 +1,7 @@
 /// Next steps --- try to remove some of these variables from the global scope if possible 
 //  make it so delete/ edit change the array so that it isnt reset when sorting 
-
+// Search unicode char doesn't look right on android :( --- check IOS/MacOS
+// possibly allow filtering based on other criteria 
 
 let allAlbums
 let searchBar = document.querySelector("#header___search-bar")
@@ -14,12 +15,9 @@ document.querySelector("#header___search-bar").addEventListener("keyup", (e) => 
 document.querySelector("#header___sort-btn").addEventListener("click", sortHandler)
 document.querySelector("#header___filter-btn").addEventListener("click", filterHandler)
 
-
 /// Handles search Ensure that users search is valid
 function searchHandler() {
-    if (searchBar.value === "") {
-        alert("Please enter a valid search")
-    }
+    if (searchBar.value === "") {alert("Please enter a valid search")  }
     else {
         //  this shows a loading bar until userss results are found 
         resultsHeader.innerHTML = `<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="laoding" >`
@@ -29,7 +27,6 @@ function searchHandler() {
             .then(allAlbums => displayAlbums()) 
     }
 }
-
 
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
@@ -78,7 +75,6 @@ function displayAlbums() {
 
 /// Below are some extras I added, they all work about the same way. - Rework the allAlbums array then call the displayAlbums  function to rerender
 function sortHandler(e) {
-    console.log(allAlbums)
     AllAlbumsContainer.innerHTML = ""
     allAlbums.sort((a, b) => (parseInt(a.collectionPrice) - parseInt(b.collectionPrice)))
     displayAlbums()
@@ -86,11 +82,9 @@ function sortHandler(e) {
 
 function deleteHandler(e) {
     e.target.parentNode.remove()
-    console.log(allAlbums)
 
     // Below is an example of what I'd do to actually delete the item 
 
-    // console.log(e, this.id)
     // fetch(`https://some_URL/${this.id}`, {
     //     method: 'DELETE',
     // }
@@ -100,7 +94,6 @@ function deleteHandler(e) {
 
 function EditHandler(e) {
     // here we replace the H3 title with an input box 
-
     let newInput = document.createElement('input')
     let oldTitle = this.parentNode.firstChild
     let parent = this.parentNode
@@ -134,11 +127,8 @@ function EditHandler(e) {
 }
 
 function filterHandler(e) {
-    console.log(filterResults.value)
     AllAlbumsContainer.innerHTML = ""
     allAlbums = allAlbums.filter(album => album.collectionPrice < filterResults.value && album)
-
     displayAlbums()
-
 }
 
