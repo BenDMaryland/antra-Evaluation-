@@ -15,7 +15,8 @@ function searchHandler() {
         alert("Please enter a valid search")
     }
     else {
-        resultsHeader.innerText = "◴"
+        // resultsHeader.innerText = "◴"
+        resultsHeader.innerHTML = `<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="laoding" >`
         fetch(`https://itunes.apple.com/search?term=${searchBar.value}&media=music&entity=album&attribute=artistTerm&limit=200`)
             .then(r => r.json())
             .then(data => allAlbums = data.results)
