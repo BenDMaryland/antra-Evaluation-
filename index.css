@@ -8,22 +8,28 @@
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
 }
+
 
 
 header {
     margin-top: .5rem;
+    width: 100vw;
+    width: 90%;
     text-align: center;
     left: 50%;
     position: fixed;
     transform: translate(-50%, 0);
-    min-height: 6rem;
+    max-height: 13vh;
     background: white;
     z-index: 99;
+    overflow: hidden;
 }
 
 .search {
     display: flex;
+
     justify-content: center;
 }
 
@@ -46,6 +52,7 @@ header {
     border-radius: 5px 0 0 5px;
     outline: none;
     width: 22rem;
+
 }
 
 #header___search-btn {
@@ -119,6 +126,8 @@ header input {
 
 #tools {
     flex-direction: row;
+    justify-content: center;
+    margin-top: .2rem;
 }
 
 #tools button {
@@ -133,4 +142,13 @@ header input {
     margin-right: .3rem;
     max-height: 4rem;
     padding: .2rem;
+}
+
+#tools input {
+    width: 16rem;
+
+}
+
+#header__results {
+    text-align: center;
 }

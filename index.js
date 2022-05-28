@@ -25,6 +25,10 @@ function searchHandler() {
             .then(r => r.json())
             .then(data => allAlbums = data.results) // sending only yhr results array helps make the code a bit dryer
             .then(allAlbums => displayAlbums()) 
+            .catch(error => {
+                alert (error);
+                AllAlbumsContainer.textContent = ""
+            })
     }
 }
 
