@@ -1,5 +1,4 @@
 /// Next steps --- try to remove some of these variables from the global scope if possible 
-//  make it so delete/ edit change the array so that it isnt reset when sorting 
 // Search unicode char doesn't look right on android :( --- check IOS/MacOS
 // possibly allow filtering based on other criteria 
 
@@ -19,11 +18,11 @@ document.querySelector("#header___filter-btn").addEventListener("click", filterH
 function searchHandler() {
     if (searchBar.value === "") { alert("Please enter a valid search") }
     else {
-        //  this shows a loading bar until userss results are found 
-        resultsHeader.innerHTML = `<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="laoding" >`
+        //  this shows a loading bar until users results are found 
+        resultsHeader.innerHTML = `<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="loading-gif" >`
         fetch(`https://itunes.apple.com/search?term=${searchBar.value}&media=music&entity=album&attribute=artistTerm&limit=200`)
             .then(r => r.json())
-            .then(data => allAlbums = data.results) // sending only yhr results array helps make the code a bit dryer
+            .then(data => allAlbums = data.results) // sending only the results array helps make the code a bit dryer
             .then(allAlbums => displayAlbums())
             .catch(error => {
                 alert(error);
@@ -101,7 +100,7 @@ function deleteHandler(e) {
     //     method: 'DELETE',
     // }
     // ).then(data => console.log(data))
-    //     .then(allTodos = allTodos.filter(todo => todo.id != this.id))
+    //     .then(allAlbums = allAlbums.filter(album => album.id != this.id))
 }
 
 function EditHandler(e) {
