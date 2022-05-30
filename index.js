@@ -2,7 +2,7 @@
 // Cleaning --- css/ html -- best practices 
 // Spell check 
 // Search unicode char doesn't look right on android :( --- check IOS/MacOS
-
+// footer 
 
 let allAlbums
 let searchBar = document.querySelector("#header___search-bar")
@@ -35,7 +35,7 @@ function searchHandler() {
 
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
-
+    console.log(allAlbums)
     // this shows the tools menu for filtering and sorting 
     document.getElementById("tools").hidden = false;
     document.getElementById("tools").style.display = "flex"
@@ -50,7 +50,7 @@ function displayAlbums() {
 
         // create html items 
         let albumImg = document.createElement("img") //artworkUrl100
-        let albumSection = document.createElement("article")
+        let albumSection = document.createElement("article")//collectionViewUrl
         let artistName = document.createElement("p") //artistName
         let albumName = document.createElement("h3") //collectionName
         let albumPrice = document.createElement("p") //collectionPrice
@@ -64,6 +64,9 @@ function displayAlbums() {
         albumCard.appendChild(albumPrice).innerText = `$${album.collectionPrice}`
 
         albumCard.className = "card"
+
+        //when a user clicks on the albums image it rediects them to a new page 
+        albumImg.addEventListener("click", () => { window.open(album.collectionViewUrl, '_blank') })
 
 
         // Deleting
