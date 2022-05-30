@@ -33,7 +33,7 @@ function searchHandler() {
 
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
-    console.log(allAlbums)
+
     // this shows the tools menu for filtering and sorting 
     document.getElementById("tools").hidden = false;
     document.getElementById("tools").style.display = "flex"
