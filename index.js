@@ -33,12 +33,6 @@ function searchHandler() {
     }
 }
 
-function clearContainer() {
-    allAlbumsContainer.textContent = ""
-
-}
-
-
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
 
@@ -84,10 +78,15 @@ function displayAlbums() {
 
         //editing
         let editBtn = albumCard.appendChild(document.createElement("button"))
-        editBtn.addEventListener("click", (e) => EditHandler(e, album))
+        editBtn.addEventListener("click", (e) => editHandler(e, album))
         editBtn.innerText = "edit"
         editBtn.id = album.collectionId
     });
+}
+
+// this clears all older entries 
+function clearContainer() {
+    allAlbumsContainer.textContent = ""
 }
 
 /// Below are some extras I added, they all work about the same way. - Rework the allAlbums array then call the displayAlbums  function to rerender
@@ -126,7 +125,7 @@ function deleteHandler(e) {
     //     .then(allAlbums = allAlbums.filter(album => album.id != this.id))
 }
 
-function EditHandler(e, album) {
+function editHandler(e, album) {
     // here we replace the H3 title with an input box 
     console.log(album)
     let newInput = document.createElement('input')
