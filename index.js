@@ -33,7 +33,7 @@ function searchHandler() {
 
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
-
+    console.log(allAlbums)
     // this shows the tools menu for filtering and sorting 
     document.getElementById("tools").hidden = false;
     document.getElementById("tools").style.display = "flex"
@@ -78,9 +78,18 @@ function displayAlbums() {
 
 /// Below are some extras I added, they all work about the same way. - Rework the allAlbums array then call the displayAlbums  function to rerender
 function sortHandler(e) {
-    AllAlbumsContainer.innerHTML = ""
-    allAlbums.sort((a, b) => (parseInt(a.collectionPrice) - parseInt(b.collectionPrice)))
-    displayAlbums()
+    if (document.querySelector("#header___sort-btn").innerText === "Sort price") {
+        AllAlbumsContainer.innerHTML = ""
+        allAlbums.sort((a, b) => (parseInt(a.collectionPrice) - parseInt(b.collectionPrice)))
+        document.querySelector("#header___sort-btn").innerText = "Sort name"
+        displayAlbums()
+    }
+    else {
+        AllAlbumsContainer.innerHTML = ""
+        allAlbums.sort((a, b) => a.collectionName.localeCompare(b.collectionName))
+        document.querySelector("#header___sort-btn").innerText = "Sort price"
+        displayAlbums()
+    }
 }
 
 function deleteHandler(e) {
