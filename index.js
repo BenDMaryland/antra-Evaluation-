@@ -13,7 +13,7 @@ document.querySelector("#header___search-btn").addEventListener("click", searchH
 document.querySelector("#header___search-bar").addEventListener("keyup", (e) => { e.key === "Enter" && searchHandler() })
 document.querySelector("#header___sort-btn").addEventListener("click", sortHandler)
 document.querySelector("#header___filter-btn").addEventListener("click", filterHandler)
-
+document.querySelector("#header___filter-bar").addEventListener("keyup", (e) => { e.key === "Enter" && filterHandler(e) })
 /// Handles search Ensure that users search is valid
 function searchHandler() {
     if (searchBar.value === "") { alert("Please enter a valid search") }
@@ -60,7 +60,7 @@ function displayAlbums() {
         albumCard.appendChild(artistName).innerText = `by ${album.artistName}`
         albumCard.appendChild(albumImg).src = album.artworkUrl60
         albumCard.appendChild(albumPrice).innerText = `$${album.collectionPrice}`
-        
+
         albumCard.className = "card"
 
 
