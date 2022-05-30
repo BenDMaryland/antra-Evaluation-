@@ -17,16 +17,16 @@ document.querySelector("#header___filter-btn").addEventListener("click", filterH
 
 /// Handles search Ensure that users search is valid
 function searchHandler() {
-    if (searchBar.value === "") {alert("Please enter a valid search")  }
+    if (searchBar.value === "") { alert("Please enter a valid search") }
     else {
         //  this shows a loading bar until userss results are found 
         resultsHeader.innerHTML = `<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="laoding" >`
         fetch(`https://itunes.apple.com/search?term=${searchBar.value}&media=music&entity=album&attribute=artistTerm&limit=200`)
             .then(r => r.json())
             .then(data => allAlbums = data.results) // sending only yhr results array helps make the code a bit dryer
-            .then(allAlbums => displayAlbums()) 
+            .then(allAlbums => displayAlbums())
             .catch(error => {
-                alert (error);
+                alert(error);
                 AllAlbumsContainer.textContent = ""
             })
     }
@@ -87,6 +87,14 @@ function sortHandler(e) {
 function deleteHandler(e) {
     e.target.parentNode.remove()
 
+    // Edits array saves this locally 
+    allAlbums = allAlbums.filter(album => album.collectionId !== +this.id)
+
+    /// updates album count 
+    allAlbums.length == 0 ?
+        resultsHeader.innerText = `No results results for ${searchBar.value}, please try again` :
+        resultsHeader.innerText = `${allAlbums.length} results for ${searchBar.value}`
+
     // Below is an example of what I'd do to actually delete the item 
 
     // fetch(`https://some_URL/${this.id}`, {
@@ -112,6 +120,10 @@ function EditHandler(e) {
             this.parentNode.prepend(newTitle)
             newTitle.innerText = e.target.value
             newInput.remove()
+
+            // Edit the array this saves it locally 
+            allAlbums.map(album => album.collectionId === +this.id ? album.collectionName = e.target.value : album)
+
 
             // example fetch request
 
