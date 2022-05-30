@@ -1,13 +1,15 @@
-/// Next steps --- try to remove some of these variables from the global scope if possible 
+// Next steps 
+// Cleaning --- css/ html -- best practices 
+// Spell check 
 // Search unicode char doesn't look right on android :( --- check IOS/MacOS
-// possibly allow filtering based on other criteria 
+
 
 let allAlbums
 let searchBar = document.querySelector("#header___search-bar")
 let AllAlbumsContainer = document.querySelector("#main__album-container")
 let resultsHeader = document.getElementById("header__results")
-let filterResults = document.querySelector("#header___filter-bar")
-let searchResults
+
+
 
 document.querySelector("#header___search-btn").addEventListener("click", searchHandler)
 document.querySelector("#header___search-bar").addEventListener("keyup", (e) => { e.key === "Enter" && searchHandler() })
@@ -155,6 +157,7 @@ function EditHandler(e) {
 }
 
 function filterHandler(e) {
+    let filterResults = document.querySelector("#header___filter-bar")
     AllAlbumsContainer.innerHTML = ""
     allAlbums = allAlbums.filter(album => album.collectionPrice < filterResults.value && album)
     displayAlbums()
