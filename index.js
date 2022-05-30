@@ -49,7 +49,7 @@ function displayAlbums() {
         // create html items 
         let albumImg = document.createElement("img") //artworkUrl100
         let albumSection = document.createElement("section")
-        let artistName = document.createElement("h1") //artistName
+        let artistName = document.createElement("p") //artistName
         let albumName = document.createElement("h3") //collectionName
         let albumPrice = document.createElement("p") //collectionPrice
 
@@ -57,8 +57,10 @@ function displayAlbums() {
         // appending them 
         let albumCard = AllAlbumsContainer.appendChild(albumSection)
         albumCard.appendChild(albumName).innerText = album.collectionName
+        albumCard.appendChild(artistName).innerText = `by ${album.artistName}`
         albumCard.appendChild(albumImg).src = album.artworkUrl60
         albumCard.appendChild(albumPrice).innerText = `$${album.collectionPrice}`
+        
         albumCard.className = "card"
 
 
@@ -78,6 +80,8 @@ function displayAlbums() {
 
 /// Below are some extras I added, they all work about the same way. - Rework the allAlbums array then call the displayAlbums  function to rerender
 function sortHandler(e) {
+
+    // first time sort is pressed it sorts by price --- after that it sorts by name 
     if (document.querySelector("#header___sort-btn").innerText === "Sort price") {
         AllAlbumsContainer.innerHTML = ""
         allAlbums.sort((a, b) => (parseInt(a.collectionPrice) - parseInt(b.collectionPrice)))
