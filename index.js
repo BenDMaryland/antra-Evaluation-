@@ -50,7 +50,7 @@ function displayAlbums() {
 
         // create html items 
         let albumImg = document.createElement("img") //artworkUrl100
-        let albumSection = document.createElement("section")
+        let albumSection = document.createElement("article")
         let artistName = document.createElement("p") //artistName
         let albumName = document.createElement("h3") //collectionName
         let albumPrice = document.createElement("p") //collectionPrice
