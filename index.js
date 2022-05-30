@@ -41,7 +41,7 @@ function clearContainer() {
 
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
-    console.log(allAlbums)
+
     // this shows the tools menu for filtering and sorting 
     document.getElementById("tools").hidden = false;
     document.getElementById("tools").style.display = "flex"
@@ -52,6 +52,7 @@ function displayAlbums() {
     allAlbums.length == 0 ?
         resultsHeader.innerText = `No results results for ${searchBar.value}, please try again` :
         resultsHeader.innerText = `${allAlbums.length} results for ${searchBar.value}`
+        
     allAlbums.forEach(album => {
 
         // create html items 
