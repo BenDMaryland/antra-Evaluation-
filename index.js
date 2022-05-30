@@ -6,7 +6,7 @@
 
 let allAlbums
 let searchBar = document.querySelector("#header___search-bar")
-let AllAlbumsContainer = document.querySelector("#main__album-container")
+let allAlbumsContainer = document.querySelector("#main__album-container")
 let resultsHeader = document.getElementById("header__results")
 
 
@@ -18,7 +18,7 @@ document.querySelector("#header___filter-btn").addEventListener("click", filterH
 document.querySelector("#header___filter-bar").addEventListener("keyup", (e) => { e.key === "Enter" && filterHandler(e) })
 /// Handles search Ensure that users search is valid
 function searchHandler() {
-    if (searchBar.value === "") { alert("Please enter a valid search") }
+    if (searchBar.value.trim() === "") { alert("Please enter a valid search") }
     else {
         //  this shows a loading bar until users results are found 
         resultsHeader.innerHTML = `<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="loading-gif" >`
@@ -28,10 +28,16 @@ function searchHandler() {
             .then(allAlbums => displayAlbums())
             .catch(error => {
                 alert(error);
-                AllAlbumsContainer.textContent = ""
+                clearContainer()
             })
     }
 }
+
+function clearContainer() {
+    allAlbumsContainer.textContent = ""
+
+}
+
 
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
@@ -41,7 +47,7 @@ function displayAlbums() {
     document.getElementById("tools").style.display = "flex"
 
     // this clears the container incase there is anything already in here 
-    AllAlbumsContainer.textContent = ""
+    clearContainer()
     // error handling
     allAlbums.length == 0 ?
         resultsHeader.innerText = `No results results for ${searchBar.value}, please try again` :
@@ -57,7 +63,7 @@ function displayAlbums() {
 
 
         // appending them 
-        let albumCard = AllAlbumsContainer.appendChild(albumSection)
+        let albumCard = allAlbumsContainer.appendChild(albumSection)
         albumCard.appendChild(albumName).innerText = album.collectionName
         albumCard.appendChild(artistName).innerText = `by ${album.artistName}`
         albumCard.appendChild(albumImg).src = album.artworkUrl60
@@ -77,7 +83,7 @@ function displayAlbums() {
 
         //editing
         let editBtn = albumCard.appendChild(document.createElement("button"))
-        editBtn.addEventListener("click", EditHandler)
+        editBtn.addEventListener("click", (e) => EditHandler(e, album))
         editBtn.innerText = "edit"
         editBtn.id = album.collectionId
     });
@@ -88,13 +94,11 @@ function sortHandler(e) {
 
     // first time sort is pressed it sorts by price --- after that it sorts by name 
     if (document.querySelector("#header___sort-btn").innerText === "Sort price") {
-        AllAlbumsContainer.innerHTML = ""
         allAlbums.sort((a, b) => (parseInt(a.collectionPrice) - parseInt(b.collectionPrice)))
         document.querySelector("#header___sort-btn").innerText = "Sort name"
         displayAlbums()
     }
     else {
-        AllAlbumsContainer.innerHTML = ""
         allAlbums.sort((a, b) => a.collectionName.localeCompare(b.collectionName))
         document.querySelector("#header___sort-btn").innerText = "Sort price"
         displayAlbums()
@@ -121,8 +125,9 @@ function deleteHandler(e) {
     //     .then(allAlbums = allAlbums.filter(album => album.id != this.id))
 }
 
-function EditHandler(e) {
+function EditHandler(e, album) {
     // here we replace the H3 title with an input box 
+    console.log(album)
     let newInput = document.createElement('input')
     let oldTitle = this.parentNode.firstChild
     let parent = this.parentNode
@@ -161,7 +166,6 @@ function EditHandler(e) {
 
 function filterHandler(e) {
     let filterResults = document.querySelector("#header___filter-bar")
-    AllAlbumsContainer.innerHTML = ""
     allAlbums = allAlbums.filter(album => album.collectionPrice < filterResults.value && album)
     displayAlbums()
 }
