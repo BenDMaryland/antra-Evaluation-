@@ -4,7 +4,7 @@
 // Search unicode char doesn't look right on android :( --- check IOS/MacOS
 // footer 
 
-let allAlbums
+let allAlbums =[]
 let searchBar = document.querySelector("#header___search-bar")
 let allAlbumsContainer = document.querySelector("#main__album-container")
 let resultsHeader = document.getElementById("header__results")
@@ -16,6 +16,9 @@ document.querySelector("#header___search-bar").addEventListener("keyup", (e) => 
 document.querySelector("#header___sort-btn").addEventListener("click", sortHandler)
 document.querySelector("#header___filter-btn").addEventListener("click", filterHandler)
 document.querySelector("#header___filter-bar").addEventListener("keyup", (e) => { e.key === "Enter" && filterHandler(e) })
+document.querySelector('#header__add-container').addEventListener("submit",addCardHandler)
+
+
 /// Handles search Ensure that users search is valid
 function searchHandler() {
     if (searchBar.value.trim() === "") { alert("Please enter a valid search") }
@@ -35,7 +38,7 @@ function searchHandler() {
 
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
-
+console.log(allAlbums)
     // this shows the tools menu for filtering and sorting 
     document.getElementById("tools").hidden = false;
     document.getElementById("tools").style.display = "flex"
@@ -170,3 +173,19 @@ function filterHandler(e) {
     displayAlbums()
 }
 
+
+function addCardHandler(e){
+
+e.preventDefault()
+let obj ={
+    artistName:document.getElementById("artist").value,
+    collectionName: document.getElementById("collection-name").value,
+    collectionPrice:document.getElementById("price").value,
+    artworkUrl60: document.getElementById("collection-image").value
+}
+
+
+console.log(obj)
+allAlbums = [...allAlbums,obj]
+displayAlbums()
+}

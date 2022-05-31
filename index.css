@@ -8,7 +8,7 @@
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-
+max-height: 80vh;
 }
 
 
@@ -97,7 +97,7 @@ img {
 main {
     position: fixed;
     top: 13vh;
-    height: 88vh;
+    max-height: 88vh;
     width: 100vw;
     overflow: scroll;
 
@@ -151,4 +151,10 @@ header input {
 
 #header__results {
     text-align: center;
+}
+
+form{
+    position: fixed;
+    bottom: 0px;
+
 }
