@@ -1,7 +1,4 @@
 // Next steps 
-// Cleaning --- css/ html -- best practices 
-// Spell check 
-// Search unicode char doesn't look right on android :( --- check IOS/MacOS
 // footer 
 
 let allAlbums = []

@@ -41,7 +41,9 @@ header {
     color: #fff;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
-} #header___add-btn {
+}
+
+#header___add-btn {
     width: 4rem;
     border: 1px solid #00B4CC;
     background: #00B4CC;
@@ -168,11 +170,12 @@ form {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-   padding: 2rem;
-   margin: 2rem;
-   border-radius: .2rem;
-   background-color: #00B4CC;
-    border:solid 1px black;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: .2rem;
+    background-color: #00B4CC;
+    border: solid 1px black;
+    max-width: 90vw;
 }
 
 form input {
@@ -182,5 +185,20 @@ form input {
     padding: 5px;
     border-radius: 5px 0 0 5px;
     outline: none;
-    width: 22rem;
+    width: 100%;
+
+}
+
+form button {
+
+    text-align: center;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    background-color: #fff;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    margin-top: .5rem;
+    padding: .2rem;
 }
