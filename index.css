@@ -8,7 +8,7 @@
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-max-height: 80vh;
+    max-height: 80vh;
 }
 
 
@@ -35,6 +35,16 @@ header {
 
 #header___sort-btn {
     width: 2rem;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+#header___add-btn {
+    width: 4rem;
     border: 1px solid #00B4CC;
     background: #00B4CC;
     text-align: center;
@@ -100,6 +110,7 @@ main {
     max-height: 88vh;
     width: 100vw;
     overflow: scroll;
+    overflow-x: hidden;
 
 }
 
@@ -153,8 +164,41 @@ header input {
     text-align: center;
 }
 
-form{
-    position: fixed;
-    bottom: 0px;
+form {
+    position: absolute;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: .2rem;
+    background-color: #00B4CC;
+    border: solid 1px black;
+    max-width: 90vw;
+}
 
+form input {
+    max-height: 4rem;
+    border: 3px solid #00B4CC;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 100%;
+
+}
+
+form button {
+
+    text-align: center;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    background-color: #fff;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    margin-top: .5rem;
+    padding: .2rem;
 }

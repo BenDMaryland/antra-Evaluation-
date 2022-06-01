@@ -1,22 +1,24 @@
 // Next steps 
-// Cleaning --- css/ html -- best practices 
-// Spell check 
-// Search unicode char doesn't look right on android :( --- check IOS/MacOS
 // footer 
 
-let allAlbums =[]
+let allAlbums = []
 let searchBar = document.querySelector("#header___search-bar")
 let allAlbumsContainer = document.querySelector("#main__album-container")
 let resultsHeader = document.getElementById("header__results")
 
 
 
-document.querySelector("#header___search-btn").addEventListener("click", searchHandler)
+document.querySelector("#header___search-btn").addEventListener("click", searchHandler) //search button and enter key 
 document.querySelector("#header___search-bar").addEventListener("keyup", (e) => { e.key === "Enter" && searchHandler() })
+
 document.querySelector("#header___sort-btn").addEventListener("click", sortHandler)
-document.querySelector("#header___filter-btn").addEventListener("click", filterHandler)
+
+document.querySelector("#header___filter-btn").addEventListener("click", filterHandler) /// filter button and enter key 
 document.querySelector("#header___filter-bar").addEventListener("keyup", (e) => { e.key === "Enter" && filterHandler(e) })
-document.querySelector('#header__add-container').addEventListener("submit",addCardHandler)
+
+document.querySelector('#form__add-container').addEventListener("submit", addCardHandler) // sumbit new card
+document.querySelector('#header___add-btn').addEventListener("click", showForm)  //show form modal 
+
 
 
 /// Handles search Ensure that users search is valid
@@ -38,7 +40,7 @@ function searchHandler() {
 
 /// Displays albums --- is used by all other functions 
 function displayAlbums() {
-console.log(allAlbums)
+    // console.log(allAlbums)
     // this shows the tools menu for filtering and sorting 
     document.getElementById("tools").hidden = false;
     document.getElementById("tools").style.display = "flex"
@@ -49,7 +51,7 @@ console.log(allAlbums)
     allAlbums.length == 0 ?
         resultsHeader.innerText = `No results results for ${searchBar.value}, please try again` :
         resultsHeader.innerText = `${allAlbums.length} results for ${searchBar.value}`
-        
+
     allAlbums.forEach(album => {
 
         // create html items 
@@ -130,10 +132,11 @@ function deleteHandler(e) {
 
 function editHandler(e, album) {
     // here we replace the H3 title with an input box 
-    console.log(album)
+    let id = album.collectionId
+
     let newInput = document.createElement('input')
-    let oldTitle = this.parentNode.firstChild
-    let parent = this.parentNode
+    let oldTitle = e.target.parentNode.firstChild
+    let parent = e.target.parentNode
     parent.prepend(newInput)
     newInput.placeholder = oldTitle.innerText
     oldTitle.remove()
@@ -142,12 +145,12 @@ function editHandler(e, album) {
     newInput.addEventListener("keyup", (e) => {
         if (e.key === "Enter") {
             let newTitle = document.createElement('h3')
-            this.parentNode.prepend(newTitle)
+            e.target.parentNode.prepend(newTitle)
             newTitle.innerText = e.target.value
             newInput.remove()
 
             // Edit the array this saves it locally 
-            allAlbums.map(album => album.collectionId === +this.id ? album.collectionName = e.target.value : album)
+            allAlbums.map(album => album.collectionId === +id ? album.collectionName = e.target.value : album)
 
 
             // example fetch request
@@ -173,19 +176,34 @@ function filterHandler(e) {
     displayAlbums()
 }
 
+// This function adds cards to the all albums array 
+function addCardHandler(e) {
 
-function addCardHandler(e){
+    e.preventDefault()
+    let obj = {
+        artistName: document.getElementById("artist").value,
+        collectionName: document.getElementById("collection-name").value,
+        collectionPrice: document.getElementById("price").value,
+        artworkUrl60: document.getElementById("collection-image").value
+    }
 
-e.preventDefault()
-let obj ={
-    artistName:document.getElementById("artist").value,
-    collectionName: document.getElementById("collection-name").value,
-    collectionPrice:document.getElementById("price").value,
-    artworkUrl60: document.getElementById("collection-image").value
+
+    console.log(obj)
+    allAlbums = [...allAlbums, obj]
+    showForm()
+    displayAlbums()
 }
 
+// shows the form modal 
+function showForm() {
+    let formContainer = document.querySelector("#form__add-container")
 
-console.log(obj)
-allAlbums = [...allAlbums,obj]
-displayAlbums()
+    if (formContainer.hidden === false) {
+        formContainer.hidden = true
+        document.querySelector('#header___add-btn').innerText = "Add song"
+    }
+    else {
+        formContainer.hidden = false
+        document.querySelector('#header___add-btn').innerText = "Close modal"
+    }
 }
