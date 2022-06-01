@@ -32,15 +32,16 @@ function searchHandler() {
             .then(data => allAlbums = data.results) // sending only the results array helps make the code a bit dryer
             .then(allAlbums => displayAlbums())
             .catch(error => {
-                alert(error);
                 clearContainer()
+                resultsHeader.innerText = `No results results for ${searchBar.value}, please try again`
+                document.getElementById("tools").hidden = true
             })
     }
 }
 
-/// Displays albums --- is used by all other functions 
+/// Displays albums based on allAlbums array --- also clears existing entrys/ loading bar --- and displays result count 
 function displayAlbums() {
-    // console.log(allAlbums)
+console.log(allAlbums)
     // this shows the tools menu for filtering and sorting 
     document.getElementById("tools").hidden = false;
     document.getElementById("tools").style.display = "flex"
@@ -150,7 +151,8 @@ function editHandler(e, album) {
             newInput.remove()
 
             // Edit the array this saves it locally 
-            allAlbums.map(album => album.collectionId === +id ? album.collectionName = e.target.value : album)
+            console.log()
+            allAlbums.map(album => album.collectionId === id ? album.collectionName = e.target.value : album)
 
 
             // example fetch request
